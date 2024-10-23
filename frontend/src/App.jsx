@@ -1,13 +1,35 @@
 import { useState } from 'react'
-import './App.css'
+import './styles/App.css'
 import SignUp from './SignUp'
+import SignIn from './SignIn'
+import Portal from './Portal'
+import NavBar from './NavBar'
+import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom"
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
+  const [userAuth,setUserAuth] = useState(null)
+
+  return ( 
     <>
-     <SignUp/>
+
+     <div className="container">
+
+        <BrowserRouter>
+          <NavBar userAuth={userAuth}/>
+          <Routes>
+           <Route path="/" element={<Portal/>}/>
+           <Route path="/signup" element={<SignUp/>}/>
+           <Route path="/signin" element={<SignIn/>}/>
+
+            
+     {/* <SignUp/> */}
+     {/* <SignIn setUserAuth={setUserAuth}/> */}
+     {/* <Portal/> */}
+
+          </Routes>
+        </BrowserRouter>
+     </div>
     </>
   )
 }
